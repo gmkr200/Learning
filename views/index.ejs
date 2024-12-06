@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .heading {
+            text-align: center;
+            margin: 20px 0;
+            color: #444;
+            font-size: 2em;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows images to wrap to the next line */
+            justify-content: center;
+            gap: 20px; /* Adds space between images */
+            padding: 20px;
+        }
+
+        .image-card {
+            width: 350px; /* Fixed width for each image container */
+            height: 300px; /* Fixed height for each image container */
+            overflow: hidden; /* Ensures image stays within the card */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card img {
+            width: 100%; /* Ensures the image fits the container */
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the container dimensions */
+            display: block;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .no-images {
+            text-align: center;
+            font-size: 1.2em;
+            color: #888;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">Images Displayed Here</h1>
+<div class="images-container">
+    <% if (images && images.length > 0) { %> <!-- Ensure 'images' exists -->
+        <% images.forEach((img) => { %>
+            <div class="image-card">
+                <img src="<%= img.imageUrl %>" alt="Uploaded Image">
+                
+            </div>
+            <form action="/delete/<%= img._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+            
+        <% }); %>
+    <% } else { %>
+        <p class="no-images">No images found.</p>
+    <% } %>
+</div>
+
+</body>
+</html>

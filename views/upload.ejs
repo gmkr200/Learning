@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        you can upload the images form here to save it database
+    </h1>
+    <div>
+        <div>
+            <form action = '/upload/single' method = "POST" enctype="multipart/form-data" >
+                <input type = 'file' name = 'singleimage' required>
+                <button type = "submit">Upload</button>
+            </form>
+<h1>multiple</h1>
+                <form action = '/upload/multiple' method = "POST" enctype="multipart/form-data" >
+                    <input type = 'file' name = 'multiple' multiple required>
+                    <button type = "submit">Upload</button>
+
+                </form>
+        </div>
+    </div>
+</body>
+</html>
